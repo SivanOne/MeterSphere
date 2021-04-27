@@ -17,7 +17,7 @@ import java.util.Set;
 public class LoadTestConsumer {
     public static final String CONSUME_ID = "load-test-data";
 
-    @KafkaListener(id = CONSUME_ID, topics = "${kafka.test.topic}", groupId = "${spring.kafka.consumer.group-id}")
+    @KafkaListener(id = CONSUME_ID, topics = "${kafka.topic}", groupId = "${spring.kafka.consumer.group-id}")
     public void consume(ConsumerRecord<?, String> record) {
         LoadTestReport loadTestReport = JSON.parseObject(record.value(), LoadTestReport.class);
         Reflections reflections = new Reflections(Application.class);
